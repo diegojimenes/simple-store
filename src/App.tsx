@@ -1,9 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Products, ProductsSliceI, saveProduct } from './Redux/Reducers/ProductsReducers';
 import axios from 'axios';
 import { useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import _ from 'lodash';
 
 function App() {
   const products = useSelector<ProductsSliceI>(
@@ -26,24 +32,20 @@ function App() {
     getProducts()
   }, [])
 
-  console.log('bubu', products)
+  const publicRoutes = [
+    { path: "/", component: () => <>Oi</> }
+  ]
+
+  if (_.isEmpty(products)) return <>loading</>
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        {publicRoutes.map(({ path, component }) => {
+          return <Route path={path} exact component={component} />
+        })}
+      </Switch>
+    </Router>
   );
 }
 
