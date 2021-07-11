@@ -7,9 +7,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import _ from 'lodash';
+import { Home } from './pages/home/home';
+import { Spin } from 'antd';
+import { NavBar } from './components/navBar';
 
 function App() {
   const products = useSelector<ProductsSliceI>(
@@ -32,19 +34,23 @@ function App() {
     getProducts()
   }, [])
 
+
   const publicRoutes = [
-    { path: "/", component: () => <>Oi</> }
+    { path: "/", component: () => <Home /> }
   ]
 
-  if (_.isEmpty(products)) return <>loading</>
+  if (_.isEmpty(products)) return <div className="loading-page"><Spin size="large" /></div>
 
   return (
     <Router>
-      <Switch>
-        {publicRoutes.map(({ path, component }) => {
-          return <Route path={path} exact component={component} />
-        })}
-      </Switch>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <NavBar />
+        <Switch>
+          {publicRoutes.map(({ path, component }) => {
+            return <Route path={path} exact component={component} />
+          })}
+        </Switch>
+      </div>
     </Router>
   );
 }
