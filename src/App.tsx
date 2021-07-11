@@ -43,11 +43,11 @@ function App() {
 
   return (
     <Router>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', overflowX: 'hidden' }}>
         <NavBar />
         <Switch>
-          {publicRoutes.map(({ path, component }) => {
-            return <Route path={path} exact component={component} />
+          {publicRoutes.map(({ path, component }, index) => {
+            return <Route key={"route" + index} path={path} exact component={component} />
           })}
         </Switch>
       </div>

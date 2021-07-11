@@ -10,11 +10,11 @@ export interface Products {
 }
 
 export interface ProductsState {
-    products: Products[]
+    products: Array<Products>
 }
 export interface ProductsSliceI {
     ProductsSlice: {
-        products: ProductsState
+        products: Array<Products>
     }
 }
 

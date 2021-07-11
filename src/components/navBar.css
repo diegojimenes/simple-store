@@ -1,5 +1,6 @@
 .main-nav {
-    width: 100vw;
+    width: 81vw;
+    margin-left: 9vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
