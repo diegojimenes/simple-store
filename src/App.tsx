@@ -12,6 +12,8 @@ import _ from 'lodash';
 import { Home } from './pages/home/home';
 import { Spin } from 'antd';
 import { NavBar } from './components/navBar';
+import { Cart } from './pages/cart/cart';
+import { saveCart } from './Redux/Reducers/CartReducer';
 
 function App() {
   const products = useSelector<ProductsSliceI>(
@@ -30,13 +32,20 @@ function App() {
     }
   }
 
+  const getCart = () => {
+    const cart: string = localStorage.getItem('myCart') ?? "[]"
+    dispatch(saveCart(cart))
+  }
+
   useEffect(() => {
     getProducts()
+    getCart()
   }, [])
 
 
   const publicRoutes = [
-    { path: "/", component: () => <Home /> }
+    { path: "/", component: () => <Home /> },
+    { path: "/cart", component: () => <Cart /> }
   ]
 
   if (_.isEmpty(products)) return <div className="loading-page"><Spin size="large" /></div>

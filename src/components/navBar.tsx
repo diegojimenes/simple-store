@@ -22,7 +22,7 @@ export const NavBar = () => {
                     <button className="nav-button"><SearchOutlined /></button>
                 </Tooltip>
                 <Tooltip title="Cart">
-                    <button className="nav-button"><ShoppingCartOutlined /></button>
+                    <Link to="/cart"><button className="nav-button"><ShoppingCartOutlined /></button></Link>
                 </Tooltip>
             </div>
         </nav>

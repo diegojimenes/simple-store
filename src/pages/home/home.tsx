@@ -12,8 +12,8 @@ export const Home = () => {
     const [currentProduct, setCurrentProduct] = useState(products[page])
 
     const renderProducts = () => {
-        return currentProduct.map(({ image, name, price }, index) => {
-            return <Product key={'product' + index} image={image} name={name} price={price} />
+        return currentProduct.map(({ image, name, price, stock }, index) => {
+            return <Product key={'product' + index} image={image} name={name} price={price} stock={stock} />
         })
     }
 
@@ -38,7 +38,6 @@ export const Home = () => {
                             style={{ fontWeight: 'bold' }}
                             block
                             onClick={loadeMore}
-                            // icon={<DownloadOutlined />}
                             size={'large'}>
                             Load more
                         </Button>
