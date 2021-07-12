@@ -1,6 +1,6 @@
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Products, ProductsSliceI, saveProduct } from './Redux/Reducers/ProductsReducers';
+import { Products, ProductsSliceI, saveProduct } from './Redux/Reducers/ProductsReducer';
 import axios from 'axios';
 import { useEffect } from 'react';
 import {

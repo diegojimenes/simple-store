@@ -20,7 +20,7 @@ export const Cart = () => {
         dispatch(saveCart(JSON.stringify(newCart)))
         localStorage.setItem('myCart', JSON.stringify(newCart))
     }
-    
+
     const changeAmount = (key: number, amount: number) => {
         let cartParse = JSON.parse(cart)
         const newCart = cartParse.reduce((newObj: any, item: any) => {
@@ -42,9 +42,13 @@ export const Cart = () => {
             okText: 'Yes',
             cancelText: 'No',
             onOk: () => call(),
-            onCancel: () => {}
+            onCancel: () => { }
         });
     }
+
+    const Total = () => JSON.parse(cart).reduce((total: any, { price, amount }: any) => {
+        return total + (parseFloat(price) * amount)
+    }, 0).toLocaleString('BRL', { style: 'currency', currency: 'BRL' })
 
     return <Col span={20} offset={2}>
         <div style={{ paddingLeft: 15, paddingRight: 35 }}>
@@ -85,9 +89,7 @@ export const Cart = () => {
                 <div>
                     <h2>Sub Total</h2>
                     <h3>
-                        {JSON.parse(cart).reduce((total: any, { price, amount }: any) => {
-                            return total + (parseFloat(price) * amount)
-                        }, 0).toLocaleString('BRL', { style: 'currency', currency: 'BRL' })}
+                        {Total()}
                     </h3>
                 </div>
                 <div>

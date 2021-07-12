@@ -52,7 +52,9 @@ export const Product = (props: productI) => {
 
     return <>
         <div className="container">
-            <img src={image} alt="Avatar" className="image" />
+            <div className="wrap-image">
+                <img src={image} alt="" />
+            </div>
             <div className="middle">
                 <div className="product-description-home">
                     <h2>
